@@ -1,5 +1,7 @@
 # zabbix-flume-template
 
+> 使用此脚本需要开启flume metric。启动flumes时增加`-Dflume.monitoring.type=http -Dflume.monitoring.port=8001`
+
 ### Installation
 > check_flume_metrics.py 需要提供端口，支持一个agent
 > Import zbx_flume_templates to your Zabbix.
@@ -46,9 +48,9 @@ optional arguments:
 ```
 
 
+--------- ---------
 
 ```
-
 
 If you installed zabbix_get package, you may run :
 ```
@@ -57,7 +59,7 @@ zabbix_get -s flumehost1 -k flume.check[41414,"CHANNEL.prod-channel","ChannelFil
 ```
 
 #### Examples
-- 当个flume
+- 单个个flume
 
   Discovery:
 
@@ -75,6 +77,9 @@ zabbix_get -s flumehost1 -k flume.check[41414,"CHANNEL.prod-channel","ChannelFil
   ```
 
 - 多个Flumes
+
+
+> 需要安装python2.7包：request
 
   Discovery:
 
@@ -94,3 +99,5 @@ zabbix_get -s flumehost1 -k flume.check[41414,"CHANNEL.prod-channel","ChannelFil
 
 #### Notes
 * Tested with Zabbix 3.4 
+
+- 如果zabbix-agent测试能获取到值，zabbix-get获取不到值则重启zabbix-agent
